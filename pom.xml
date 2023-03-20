@@ -106,7 +106,7 @@
     <mavenRuntimeVersion>3.2.5</mavenRuntimeVersion>
     <mavenBuildVersion>3.6.3</mavenBuildVersion>
     <javaBuildVersion>11</javaBuildVersion>
-    <mavenPluginToolsVersion>3.6.4</mavenPluginToolsVersion>
+    <mavenPluginToolsVersion>3.8.1</mavenPluginToolsVersion>
   </properties>
 
   <dependencies>
@@ -167,7 +167,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.3.0</version> <!-- Last Java7 version -->
+      <version>3.5.1</version>
     </dependency>
     <!-- incremental build support (http://www.eclipse.org/m2e/documentation/m2e-making-maven-plugins-compat.html) -->
     <dependency>
