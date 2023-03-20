@@ -98,12 +98,14 @@
   </distributionManagement>
 
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.release>7</maven.compiler.release>
+    <maven.compiler.source>1.${maven.compiler.release}</maven.compiler.source>
+    <maven.compiler.target>1.${maven.compiler.release}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <mavenRuntimeVersion>3.2.5</mavenRuntimeVersion>
-    <mavenBuildVersion>3.2.5</mavenBuildVersion>
+    <mavenBuildVersion>3.6.3</mavenBuildVersion>
+    <javaBuildVersion>11</javaBuildVersion>
     <mavenPluginToolsVersion>3.6.4</mavenPluginToolsVersion>
   </properties>
 
@@ -223,27 +225,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>animal-sniffer-maven-plugin</artifactId>
-          <version>1.22</version>
-          <configuration>
-            <signature>
-              <groupId>org.codehaus.mojo.signature</groupId>
-              <artifactId>java17</artifactId>
-              <version>1.0</version>
-            </signature>
-          </configuration>
-          <executions>
-            <execution>
-              <id>check-java7</id>
-              <phase>package</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>3.2.1</version>
@@ -252,6 +233,9 @@
               <requireMavenVersion>
                 <version>${mavenBuildVersion}</version>
               </requireMavenVersion>
+              <requireJavaVersion>
+                <version>${javaBuildVersion}</version>
+              </requireJavaVersion>
               <enforceBytecodeVersion>
                 <maxJdkVersion>1.7</maxJdkVersion>
               </enforceBytecodeVersion>
@@ -389,10 +373,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>animal-sniffer-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
