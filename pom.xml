@@ -122,7 +122,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <mavenRuntimeVersion>3.2.5</mavenRuntimeVersion>
-    <mavenBuildVersion>3.6.3</mavenBuildVersion>
+    <mavenBuildVersion>3.9.6</mavenBuildVersion>
     <javaBuildVersion>11</javaBuildVersion>
     <mavenPluginToolsVersion>3.13.0</mavenPluginToolsVersion>
   </properties>
