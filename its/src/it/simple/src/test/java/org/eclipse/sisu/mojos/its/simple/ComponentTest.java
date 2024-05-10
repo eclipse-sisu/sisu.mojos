@@ -10,8 +10,11 @@
  *******************************************************************************/
 package org.eclipse.sisu.mojos;
 
+import org.junit.Test;
 import javax.inject.Named;
 
 @Named
 public class ComponentTest {
+    @Test
+    public void dummyTest() {}
 }
