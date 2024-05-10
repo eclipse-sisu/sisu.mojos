@@ -19,6 +19,7 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
+          enableCrossOsArchive: true
           path: ~/.m2/repository
           key: maven-${{ github.sha }}
       - run: ./mvnw clean install -e -B -V
@@ -40,6 +41,7 @@ jobs:
           cache: 'maven'
       - uses: actions/cache@v4
         with:
+          enableCrossOsArchive: true
           path: ~/.m2/repository
           key: maven-${{ github.sha }}
       - run: ./mvnw -e -B -V -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
