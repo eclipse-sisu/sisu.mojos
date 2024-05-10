@@ -23,6 +23,7 @@ jobs:
           key: maven-${{ github.sha }}
       - run: ./mvnw clean install -e -B -V
   test:
+    needs: build
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
