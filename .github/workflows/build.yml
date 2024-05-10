@@ -10,14 +10,26 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ github.sha }}
+      - run: ./mvnw clean install -e -B -V
+  test:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        java: [ '11', '17', '21' ]
+        java: [ '8', '11', '17', '21' ]
+        maven: [ '3.6.3', '3.8.8', '3.9.6' ]
       fail-fast: false
-
     runs-on: ${{ matrix.os }}
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -25,7 +37,10 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'temurin'
           cache: 'maven'
-
-      - name: Build with Maven
-        run: ./mvnw verify -e -B -V
+      - uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ github.sha }}
+      - run: ./mvnw -e -B -V -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
+      - run: ./mvnw -f its verify -e -B -V
 
