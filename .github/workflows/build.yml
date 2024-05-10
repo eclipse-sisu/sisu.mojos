@@ -19,7 +19,6 @@ jobs:
           distribution: 'temurin'
       - uses: actions/cache@v4
         with:
-          enableCrossOsArchive: true
           path: ~/.m2/repository
           key: maven-${{ github.sha }}
       - run: ./mvnw clean install -e -B -V
@@ -27,8 +26,8 @@ jobs:
     needs: build
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        java: [ '8', '21' ]
+        os: [ubuntu-latest]
+        java: [ '8', '11', '17', '21' ]
         maven: [ '3.6.3', '3.8.8', '3.9.6' ]
       fail-fast: false
     runs-on: ${{ matrix.os }}
@@ -37,11 +36,10 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'zulu'
+          distribution: 'temurin'
           cache: 'maven'
       - uses: actions/cache@v4
         with:
-          enableCrossOsArchive: true
           path: ~/.m2/repository
           key: maven-${{ github.sha }}
       - run: ./mvnw -e -B -V -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
