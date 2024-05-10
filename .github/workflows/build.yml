@@ -44,4 +44,8 @@ jobs:
           key: maven-${{ github.sha }}
       - run: ./mvnw -e -B -V -Dmaven=${{ matrix.maven }} -Dtype=only-script wrapper:wrapper
       - run: ./mvnw -f its verify -e -B -V
-
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: its-${{ matrix.os }}-${{ matrix.java }}-${{ matrix.maven }}
+          path: ./its/target/classes/its
