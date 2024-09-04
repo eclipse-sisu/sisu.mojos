@@ -185,7 +185,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.5.1</version>
+      <version>4.0.1</version>
     </dependency>
     <!-- incremental build support (http://www.eclipse.org/m2e/documentation/m2e-making-maven-plugins-compat.html) -->
     <dependency>
